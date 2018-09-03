@@ -1,6 +1,6 @@
 ## Simplified_Version1
 
-## These repository offers some files of ECOC_MDC algorithm, but only contains the core part of the algorithm,
+These repository offers some files of ECOC_MDC algorithm, but only contains the core part of the algorithm,
 other functions like saving data as csv format, and drawing pictures are recorded in the Later Version.
 
 ## repository contains:
