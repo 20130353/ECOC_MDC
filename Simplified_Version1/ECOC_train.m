@@ -25,7 +25,7 @@ function result = ECOC_train(TD,TL,TTD,TTL,Params)
     [Predict_label,~,Confusion] = ECOCTest(TTD,Classifiers,Train_Params,TTL);
    
     clear result
-    result.ECOC = ECOC;
+    result.Params = Train_Params;
     result.Classifiers = Classifiers;
     result.Predict_label = Predict_label;
     result.Confusion = Confusion;

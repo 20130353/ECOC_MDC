@@ -1,14 +1,21 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % 生成复杂度--N3
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%##########################################################################
+
+% <ECOC-MDC. Coding and decoding designs for multi-class problems.>
+% Copyright of Machine Learning and Data Mining Team of Xmu university in China
+
+%##########################################################################
+
+% this is part of ECOC-MDC
+% this file is to generate two groups based on N3 DC measure
+% The related intorduction are shown in the paper
+% <Analysis of data complexity measures for classification>
+
+%##########################################################################
 function [c1,c2,tcplx]=get_N3(c1,c2,train,label)
+    disp('split class based on the N3 measure');
     cplx=get_complexityN3(c1,c2,train,label);
-    tcplx=cplx;
-    
-    disp('生成编码矩阵：N3');
- 
+    tcplx=cplx; 
     while(true)
-        % % % swap min max
         c1_s=c1;
         c2_s=c2;
 
@@ -36,42 +43,23 @@ function [c1,c2,tcplx]=get_N3(c1,c2,train,label)
 end
 
 function clpx=get_complexityN3(c1,c2,train,label) 
-   % % %设置train data & label
+   % set train data & label
    [data1,data2]=get_data1A2(c1,c2,train,label);
    traindata=[data1;data2];
    trainlabel=zeros([size(data1,1)+size(data2,1),1]);
    trainlabel(1:size(data1,1))=1;
    trainlabel(size(data1,1)+1:size(data2,1))=2;  
-  
-%    % % %留一法训练 & 检验（MATALB自带）
-%    count=0;
-%    N=size(traindata,1);
-%    for i=1:size(traindata,1)
-%       [tnindex,ttindex] = crossvalind('LeaveMOut',N,1);
-%       
-%       % % 找到train对应的label
-%       td=traindata(tnindex',:);
-%       tl=trainlabel(tnindex');      
-%       ttd=traindata(ttindex',:);
-%       ttl=trainlabel(ttindex',:);
-%       
-%       knn_model =ClassificationKNN.fit(td,tl,'NumNeighbors',1);
-%       predict_label = predict(knn_model,ttd);
-%       if(predict_label~=ttl)
-%            count=count+1;
-%       end
-%    end
-
-  % % %留一法训练 & 检验（自己写的）
+ 
+   % leave one out
    count=0;
    N=size(traindata,1);
    for i=1:size(traindata,1)      
      
-      %测试集
+      % train
       ttd=traindata(i,:);
       ttl=trainlabel(i);    
       
-      %训练集
+      % test
       td=traindata;
       td(i,:)=[];
       tl=trainlabel;
@@ -89,11 +77,9 @@ function clpx=get_complexityN3(c1,c2,train,label)
 end
 
 function index=get_maxdis(c,train,label)
-    % % %找到类的样本点
     index=0;
     mc=get_meanp(c,train,label);    
     
-    % % %样本之间的距离
     dis=zeros([size(mc,1),size(mc,1)]);
     for i=1:size(mc,1)
         for j=i+1:size(mc,1)
@@ -102,7 +88,6 @@ function index=get_maxdis(c,train,label)
         end 
     end
     
-    % % % 类内距离最远的点
     for i=1:size(mc,1)
         tdis(i)=sum(dis(i,:));
     end
@@ -134,5 +119,3 @@ function [c1,c2]=swap(c1,c2,i,j)
     c1(i)=c2(j);
     c2(j)=temp;
 end
-
-

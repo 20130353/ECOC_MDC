@@ -7,11 +7,13 @@
 
 % this is part of ECOC-MDC
 % this file is to generate two groups based on F1 DC measure
+% The related intorduction are shown in the paper
+% <Analysis of data complexity measures for classification>
 
 %##########################################################################
 
 function [c1,c2,tcplx]=get_F1(c1,c2,train,label)    
-    disp('init F1');
+    disp('split class based on the F1 measure');
     cplx=get_complexityF1(c1,c2,train,label);  
     tcplx=cplx;
      
@@ -113,6 +115,5 @@ function index=get_maxavg(c,train,label)
     end   
     if(index==0)
         error('Exit:get max avg error');
-    end
-    
+    end    
 end

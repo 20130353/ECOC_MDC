@@ -12,7 +12,7 @@
 %Step1. load all run files in the folder
 addpath(genpath(pwd))
 addpath(pwd)
-disp(['current mat file path is',pwd])
+disp(['current mat file path is:',pwd])
 
 %Step2. define the input and output path
 % define the input path
@@ -41,7 +41,7 @@ Params.coding = 'ECOC_MDC';
 Params.decoding = 'HD';
 Params.base = 'SVM';
 Params.base_test = 'SVM_Test';
-Params.DC = 'F1';
+Params.DC = 'Cluster';
 
 % start ECOC training process
 result = ECOC_train(TD,TL,TTD,TTL,Params);

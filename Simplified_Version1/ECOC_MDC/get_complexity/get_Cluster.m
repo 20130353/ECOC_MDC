@@ -1,12 +1,22 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % 生成复杂度--聚类
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%##########################################################################
+
+% <ECOC-MDC. Coding and decoding designs for multi-class problems.>
+% Copyright of Machine Learning and Data Mining Team of Xmu university in China
+
+%##########################################################################
+
+% this file is to split data into two groups based on the Cluster DC complexity measure.
+% Cluster DC complexity measure is proposed by Paper
+% <A Novel ECOC Algorithm for Multiclass Microarray Data Classification Based on Data Complexity Analysis>
+% the related detail could be found in the paper.
+
+%##########################################################################
 function [c1,c2,tcplx]=get_Cluster(c1,c2,train,label) 
-    disp('生成编码矩阵：Cluster');
+    disp('split class based on the Cluster measure');
     tcplx=[];
     [cplx,clusterlabel,clabel]=get_complexityCluster(c1,c2,train,label);
     tcplx=cplx;
-    count=size(c1,1)+size(c2,1);%设置迭代次数
+    count=size(c1,1)+size(c2,1);
     while(true)       
         
         [c11,c21]=get_index(c1,c2,clusterlabel,clabel,train,label);
@@ -28,7 +38,7 @@ end
 
 function [cplx,clusterlabel,clabel]=get_complexityCluster(c1,c2,train,label)
     [data1,data2]=get_data1A2(c1,c2,train,label);
-    center1=get_center(data1);%均值
+    center1=get_center(data1);%mean value
     center2=get_center(data2);
 
     data=[data1;data2];
@@ -51,17 +61,17 @@ end
 function [c1,c2]=get_index(c1,c2,clusterlabel,clabel,train,label)
     [label1,label2]=get_label1A2(c1,c2,train,label);
     datalabel=[label1;label2];
-    count=zeros([size(unique(label),1),1]);%所有的label的集合
+    count=zeros([size(unique(label),1),1]);%label set
     for i=1:size(clusterlabel,2)
        if(clabel(i)~=clusterlabel(i))
-           count(datalabel(i,1))=count(datalabel(i,1))+1;%本身的label识别错误数量增加1
+           count(datalabel(i,1))=count(datalabel(i,1))+1;%if mismatch the centroid,error plus one 
        end
     end
     if((sum(count)/size(datalabel,1))>0.05)
         index1=find(count(c1)==max(count(c1)));
         index2=find(count(c2)==max(count(c2)));   
-        if(size(index1,1)>1) index1=index1(1); end%label1
-        if(size(index2,1)>1) index2=index2(1); end%label2
+        if(size(index1,1)>1) index1=index1(1); end
+        if(size(index2,1)>1) index2=index2(1); end
         [c1,c2]=swap(c1,c2,index1,index2);
     end
 end
@@ -74,7 +84,7 @@ function [c1,c2]=swap(c1,c2,i,j)
 end
 
 function center=get_center(data)
-    for p=1:size(data,2) %group
+    for p=1:size(data,2)
        center(p)=mean(data(:,p));        
     end
 end

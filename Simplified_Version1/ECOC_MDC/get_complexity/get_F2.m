@@ -6,46 +6,18 @@
 %##########################################################################
 
 % this is part of ECOC-MDC
-% this file is to generate two groups based on F1 DC measure
+% this file is to generate two groups based on F2 DC measure
+% The related intorduction are shown in the paper
+% <Analysis of data complexity measures for classification>
+% Note that: to fit the microarray data, we modifiy the original product
+% into add. 
 
 %##########################################################################
 
 function [c1,c2,tcplx]=get_F2(c1,c2,train,label)
-    disp('��ɱ������F2');
-    [c1,c2,tcplx]=F22(c1,c2,train,label);
-end
-
-%%�����ֽ�����ʽ
-function [c1,c2,tcplx]=F23(c1,c2,train,label)    
+    disp('split class based on the F2 measure');
     cplx=get_complexityF2(c1,c2,train,label);
     tcplx=cplx;
-    while(true)
-        c1_s=c1;
-        c2_s=c2;
-        
-        new_cplx = get_swap_group(c1,c2,train,label,'F2');
-        
-        if(new_cplx < cplx)
-            c1=c1_nx;
-            c2=c2_nx;
-            cplx=new_cplx;
-            tcplx=[tcplx cplx];          
-        else
-            c1=c1_s;
-            c2=c2_s;
-            break;
-        end  
-    end
-end      
-
-function [c1,c2,tcplx]=F22(c1,c2,train,label)
-% �ڶ��ֽ�����ʽ
-    cplx=get_complexityF2(c1,c2,train,label);
-    tcplx=cplx;
-    dsign='F2';
-    draw_pic(c1,c2,train,label,dsign);
-    global picnum;
-    dsign=['F2_',num2str(picnum),'_local'];
     while(true)
         c1_s=c1;
         c2_s=c2;
@@ -58,69 +30,25 @@ function [c1,c2,tcplx]=F22(c1,c2,train,label)
         elseif(res==2)
             cmini=get_minavg(c2,train,label);    
             cmaxi=get_maxavg(c1,train,label);                
-            [c1_xn,c2_xn]=swap(c1,c2,cmaxi,cini);
+            [c1_xn,c2_xn]=swap(c1,c2,cmaxi,cmini);
         end
         xncplx=get_complexityF2(c1_xn,c2_xn,train,label);
 
-        % % %select max between xncplx and nxcplx
+        % select max between xncplx and nxcplx
         if(xncplx<cplx)
             c1=c1_xn;
             c2=c2_xn;
             cplx=xncplx;
             tcplx=[tcplx cplx];  
-            draw_pic(c1,c2,train,label,dsign);
         else
             c1=c1_s;
             c2=c2_s;
             break;
-        end        
-% % % % % % % % % % % % % % % % % % % % % % % % %       
+        end           
     end    
 end
 
-%��һ�ֽ�����ʽ
-function [c1,c2,tcplx]=F21(c1,c2,train,label)    
-    cplx=get_complexityF2(c1,c2,train,label);
-    tcplx=cplx;
-    while(true)
-        c1_s=c1;
-        c2_s=c2;
-        % %   swap min max       
-        c1i=get_minavg(c1,train,label);
-        c2i=get_minavg(c2,train,label);
-        [c1_nx,c2_nx]=swap(c1,c2,c1i,c2i);
-
-        nxcplx=get_complexityF2(c1_nx,c2_nx,train,label);
-
-        % % %  swap max min
-        c1i=get_maxavg(c1,train,label);
-        c2i=get_maxavg(c2,train,label);        
-        [c1_xn,c2_xn]=swap(c1,c2,c1i,c2i);
-        xncplx=get_complexityF2(c1_xn,c2_xn,train,label);
-        
-        if(nxcplx<=xncplx &&nxcplx<cplx)
-            c1=c1_nx;
-            c2=c2_nx;
-            cplx=nxcplx;
-            tcplx=[tcplx cplx];     
-        elseif(xncplx<=nxcplx &&xncplx<cplx)
-            c1=c1_xn;
-            c2=c2_xn;
-            cplx=xncplx;
-            tcplx=[tcplx cplx];           
-        else
-            c1=c1_s;
-            c2=c2_s;
-            break;
-        end  
-    end
-end
-
-
- 
-% % % % % % % % % % % % % % % % % % % % % % % % 
 function res=get_larger(c1,c2,train,label)
-    % % %����ÿ��feature��ֵ�� 
     [data1,data2]=get_data1A2(c1,c2,train,label);
     for p=1:size(train,2)
         m1(p)=mean(data1(:,p));
@@ -137,7 +65,6 @@ function [c1,c2]=swap(c1,c2,i,j)
     c2(j)=temp;
 end
 
-
 function F2=get_complexityF2(c1,c2,train,label)
     [data1,data2]=get_data1A2(c1,c2,train,label);
     F2=0;
@@ -149,7 +76,6 @@ function F2=get_complexityF2(c1,c2,train,label)
 end 
 
 function index=get_minavg(c,train,label)
-    % % %���������Сfeature�����
     maxvalue=1.7977e+308;
     index=0;
     bb_m=maxvalue;
@@ -174,10 +100,8 @@ function index=get_minavg(c,train,label)
     
 end
 
-
 function index=get_maxavg(c,train,label)
-    % % %����������feature�����
-    minvalue=-1.7977e+308;
+    minvalue = -1.7977e+308;
     index=0;
     bb_m=minvalue;
     for i=1:size(c)  

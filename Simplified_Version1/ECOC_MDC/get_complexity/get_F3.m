@@ -1,8 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % 生成复杂度--F3
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%##########################################################################
+
+% <ECOC-MDC. Coding and decoding designs for multi-class problems.>
+% Copyright of Machine Learning and Data Mining Team of Xmu university in China
+
+%##########################################################################
+
+% this is part of ECOC-MDC
+% this file is to generate two groups based on F3 DC measure
+% The related intorduction are shown in the paper
+% <Analysis of data complexity measures for classification>
+
+%##########################################################################
 function  [c1,c2,tcplx]=get_F3(c1,c2,train,label)
-    disp('生成编码矩阵：F3');
+    disp('split class based on the F3 measure');
     cplx=get_complexityF3(c1,c2,train,label);
     tcplx=cplx;
   
@@ -26,7 +36,6 @@ function  [c1,c2,tcplx]=get_F3(c1,c2,train,label)
             c2=c2_xn;
             cplx=xncplx;   
             tcplx=[tcplx cplx];
-            draw_pic(c1,c2,train,label,dsign);
         else
             c1=c1_s;
             c2=c2_s;
@@ -60,7 +69,7 @@ function clpx=get_complexityF3(c1,c2,train,label)
 end 
 
 function res=get_larger(c1,c2,train,label)
-    % % %计算每个feature均值和 
+    % calculate the mean value of samples
     [data1,data2]=get_data1A2(c1,c2,train,label);
     for p=1:size(train,2)
         m1(p)=mean(data1(:,p));
