@@ -3,12 +3,12 @@
 These repository offers some files of ECOC_MDC algorithm, but only contains the core part of the algorithm,
 other functions like saving data as csv format, and drawing pictures are recorded in the Later Version.
 
-## repository contains:
-- data folder
-- ECOC_MDC folder
-- ecoclib folder
-- Demo.m file
-- Readme.md file
+## Repository contains:
++ data folder
++ ECOC_MDC folder
++ ecoclib folder
++ Demo.m file
++ Readme.md file
 1. data folder contains:
   - result, for saving the result obtained by the algorithm
   - train_test, for storing the train and test data, Demo.m file would apply the files to start the procedure.
