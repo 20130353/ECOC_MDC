@@ -12,6 +12,7 @@ other functions like saving data as csv format, and drawing pictures are recorde
     1. data folder contains:
         - result, for saving the result obtained by the algorithm
         - train_test, for storing the train and test data, Demo.m file would apply the files to start the procedure.
+        The data comes from the DNA genes, and details can be founded in the link wiki https://en.wikipedia.org/wiki/DNA_microarray
   
     2. ECOC_MDC folder contains:
         - get_cds.m, for generating the coding matrix of ECOC_MDC algorithm.
@@ -26,7 +27,7 @@ other functions like saving data as csv format, and drawing pictures are recorde
         - ECOCTest.m file.
         - ECOCTrain.m file.
   
-        note that:the library is provided by the others. if you want to know more about it, please look at https://www.researchgate.net/publication/220320705_Error-Correcting_Ouput_Codes_Library
+        note that: the library is provided by the others. if you want to know more about it, please look at https://www.researchgate.net/publication/220320705_Error-Correcting_Ouput_Codes_Library
     4. Demo.m 
         this file offers a clear demo of ECOC-MDC, and numerous annotation are marked on it.
   
