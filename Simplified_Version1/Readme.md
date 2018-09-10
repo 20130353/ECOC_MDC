@@ -28,13 +28,13 @@ other functions like saving data as csv format, and drawing pictures are recorde
         - ECOCTrain.m file.
   
         note that: the library is provided by the others. if you want to know more about it, please look at https://www.researchgate.net/publication/220320705_Error-Correcting_Ouput_Codes_Library
-    4. Demo.m 
+    4. Demo.m             
         this file offers a clear demo of ECOC-MDC, and numerous annotation are marked on it.
   
-    5. ECOC_train.m
+    5. ECOC_train.m           
         this file is interface file of ECOC_MDC and it calls for the ECOCTrain and ECOCTest file.
   
-## Others
+## Others            
 This repostory displays the whole work of ECOC_MDC algorithm i have worked for a two years, i hope to share my work by this platform. If you are interested this topic, welcome to interact me!
   
   
