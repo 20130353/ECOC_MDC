@@ -36,17 +36,17 @@ These repository offers some base implements of ECOC_MDC algorithm and some draw
     - Decodings.
     - Custer_Classifier_Test.m file.
     - ECOCTest.m file.
-    - ECOCTrain.m file.
+    - ECOCTrain.m file.        
   
-    note that:the library is provided by the others. if you want to know more about it, please look at https://www.researchgate.net/publication/220320705_Error-Correcting_Ouput_Codes_Library
+    note that: the library is provided by the others. if you want to know more about it, please look at https://www.researchgate.net/publication/220320705_Error-Correcting_Ouput_Codes_Library
         
-4. save_file contains:
+4. save_file contains:           
     this part is not finised yet.
         
-5. Demo.m 
+5. Demo.m            
     this file offers a clear demo of ECOC-MDC, and numerous annotation are marked on it.
   
-## Others
+## Others         
 This repostory displays the whole work of ECOC_MDC algorithm i have worked for a two years, i hope to share my work by this platform. If you are interested this topic, welcome to interact me!
   
   
