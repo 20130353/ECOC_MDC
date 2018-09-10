@@ -28,7 +28,7 @@ These repository offers some files of ECOC_MDC algorithm, the version is updated
         - ECOCTest.m file.
         - ECOCTrain.m file.
   
-        note that:the library is provided by the others. if you want to know more about it, please look at https://www.researchgate.net/publication/220320705_Error-Correcting_Ouput_Codes_Library
+        note that:the library is provided by the others. if you want to know more about it, please look at                                       https://www.researchgate.net/publication/220320705_Error-Correcting_Ouput_Codes_Library
     4. Demo.m 
         this file offers a clear demo of ECOC-MDC, and numerous annotation are marked on it.
   
@@ -36,7 +36,8 @@ These repository offers some files of ECOC_MDC algorithm, the version is updated
         this file is interface file of ECOC_MDC and it calls for the ECOCTrain and ECOCTest file.
   
 ## Others
-This repostory displays the whole work of ECOC_MDC algorithm i have worked for a two years, i hope to share my work by this platform. If you are interested this topic, welcome to interact me!
+This repostory displays the whole work of ECOC_MDC algorithm i have worked for a two years,
+i hope to share my work by this platform. If you are interested this topic, welcome to interact me!
   
   
 
