@@ -1,5 +1,5 @@
 
-# Simplified_Version2
+# Advanced_Version
 ------
 
 These repository offers some base implements of ECOC_MDC algorithm and some draw function, the fairly simple version is version of [Simplified_Version2](https://github.com/20130353/ECOC_MDC/tree/master/Simplified_Version2). 
